@@ -1,36 +1,40 @@
 const express = require("express");
 const router = express.Router();
-const { User } = require("../database/models");
+const { User, Zipcode } = require("../database/models");
 
 router.post("/login", async (req, res, next) => {
   try {
     const user = await User.findOne({ where: { username: req.body.username } });
     if (!user) {
       res.status(401).send("Wrong username and/or password");
-    }
-    else if (!user.correctPassword(req.body.password)) {
+    } else if (!user.correctPassword(req.body.password)) {
       res.status(401).send("Wrong username and/or password");
+    } else {
+      req.login(user, (err) => (err ? next(err) : res.json(user)));
     }
-    else {
-      req.login(user, err => (err ? next(err) : res.json(user)));
-    }
-  }
-  catch (err) {
+  } catch (err) {
     next(err);
   }
 });
 
 router.post("/signup", async (req, res, next) => {
   try {
-    const { username, password } = req.body;
-    const user = await User.create({ username, password });
-    req.login(user, err => (err ? next(err) : res.json(user)));
-  }
-  catch (err) {
+    const { username, password, zip } = req.body;
+    console.log(username, password, zip);
+    const zipC = await Zipcode.create(
+      { zipCode: zip, user: username },
+      { include: User }
+    );
+    // const user = await User.create({ username, password }, { include: Zipcode });
+    await zipC.createUser({ username, password });
+
+    console.log(user);
+    req.login(user, (err) => (err ? next(err) : res.json(user)));
+  } catch (err) {
     if (err.name === "SequelizeUniqueConstraintError") {
       res.status(401).send("User already exists");
-    }
-    else {
+      console.log("user already exists");
+    } else {
       next(err);
     }
   }
@@ -41,8 +45,7 @@ router.delete("/logout", (req, res, next) => {
   req.session.destroy((err) => {
     if (err) {
       return next(err);
-    }
-    else {
+    } else {
       res.status(204).end();
     }
   });

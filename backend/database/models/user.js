@@ -6,20 +6,20 @@ const User = db.define("user", {
   username: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
   },
   password: {
     type: Sequelize.STRING,
     get() {
       return () => this.getDataValue("password");
-    }
+    },
   },
   salt: {
     type: Sequelize.STRING,
     get() {
       return () => this.getDataValue("salt");
-    }
-  }
+    },
+  },
 });
 
 User.generateSalt = function () {
@@ -38,7 +38,7 @@ User.prototype.correctPassword = function (candidatePwd) {
   return User.encryptPassword(candidatePwd, this.salt()) === this.password();
 };
 
-const setSaltAndPassword = user => {
+const setSaltAndPassword = (user) => {
   if (user.changed("password")) {
     user.salt = User.generateSalt();
     user.password = User.encryptPassword(user.password(), user.salt());
