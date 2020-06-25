@@ -4,9 +4,12 @@ const db = require("../db");
 const Zipcode = db.define("zipcode", {
     zipCode: {
         type: Sequelize.STRING,
-        unique: true,
         primaryKey: true,
         allowNull: false
+    },
+    user: {
+        type: Sequelize.STRING,
+        unique: true,
     }
 });
 

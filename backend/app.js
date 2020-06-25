@@ -4,12 +4,19 @@ const passport = require("passport");
 const authRouter = require("./auth");
 const apiRouter = require("./routes");
 const cors = require("cors");
+const bodyParser = require('body-parser')
 
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const db = require("./database");
 const sessionStore = new SequelizeStore({ db });
 
 const app = express();
+
+app.use(bodyParser.json());
+
+// insert elements into the database
+
+
 
 passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser(async (id, done) => {
@@ -23,8 +30,44 @@ passport.deserializeUser(async (id, done) => {
 });
 
 const syncDb = async () => {
-  await db.sync({ force: true });
+  await db.sync({ force: true })
+    .then(() => {
+      console.log(`Database & tables created!`);
+      user = db.models.user;
+      zipcode = db.models.zipcode;
+
+      zipcode.bulkCreate([
+        { zipCode: '10001', user: 'user01' },
+        { zipCode: '10022', user: 'user02' },
+        { zipCode: '32003', user: 'user03' }
+      ]).then(function () {
+        return zipcode.findAll();
+      }).then(function (zipcodes) {
+        console.log(zipcodes);
+      });
+
+      user.bulkCreate([
+        { username: 'user01', password: '123' },
+        { username: 'user02', password: '123' },
+        { username: 'user03', password: '123' }
+      ]).then(function () {
+        return user.findAll();
+      }).then(function (users) {
+        console.log(users);
+      });
+    });
 }
+
+// get all the zip codes
+app.get('/allZip', function (req, res) {
+  db.models.zipcode.findAll()
+    .then(function (zips) {
+      res.send(zips)
+    });
+});
+
+
+
 
 const configureApp = () => {
   app.use(express.json());
@@ -40,7 +83,7 @@ const configureApp = () => {
     res.header("Access-Control-Allow-Credentials", true);
     next();
   });
-
+ 
   */
 
   app.use(
