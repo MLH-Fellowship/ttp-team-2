@@ -24,8 +24,8 @@ const SignUpView = (props) => {
                 </div>
             </div>
             <div className="form-group">
-                <label htmlFor="inputAddress">Address</label>
-                <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St" name="address" onChange={props.handleChange} required/>
+                <label htmlFor="inputZIP">ZIP Code</label>
+                <input type="number" className="form-control" id="inputZIP" placeholder="10000" name="zip" onChange={props.handleChange} required/>
             </div>
             <div className="form-group">
                 <label htmlFor="inputAge">Age</label>
