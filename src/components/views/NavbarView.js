@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 const NavbarView = (props) => {
@@ -29,12 +29,12 @@ const NavbarView = (props) => {
   }
   return (
     <div>
-      <nav class="navbar navbar-dark bg-primary">
-        <a class="navbar-brand" href="#">
-          Navbar
-        </a>
+      <nav className="navbar navbar-dark bg-primary">
+        <Link to="/" className="navbar-brand">
+          Home
+        </Link>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-toggle="collapse"
           data-target="#navbarSupportedContent"
@@ -42,18 +42,11 @@ const NavbarView = (props) => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <Link to="/" className="nav-link">
-                Home
-              </Link>
-            </li>
-            {navbarLinks}
-          </ul>
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav mr-auto">{navbarLinks}</ul>
         </div>
       </nav>
     </div>
