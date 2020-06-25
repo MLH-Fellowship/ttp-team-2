@@ -7,8 +7,6 @@ const { isCompositeComponentWithType } = require("react-dom/test-utils");
 Zipcode.hasMany(User, { foreignKey: 'username', sourceKey: 'user' })
 User.belongsTo(Zipcode, { foreignKey: 'username', targetKey: 'user' })
 
-
-
 // Information about association is present in the target model, foregin key constraint of zipcode, select zipcode from users;
 // Zipcode.hasMany(User, { as: 'User' })
 // User.hasOne(Symptoms)
