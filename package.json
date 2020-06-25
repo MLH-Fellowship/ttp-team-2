@@ -1,10 +1,13 @@
 {
-  "name": "authorize-backend",
+  "name": "hackathon-corona",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./bin/www",
+    "dev": "PORT=3001 npx nodemon start",
+    "dev_windows": "set PORT=3001 && npx nodemon start"
   },
   "author": "",
   "license": "ISC",
@@ -12,10 +15,12 @@
     "connect-session-sequelize": "^6.0.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
     "passport": "^0.4.0",
-    "pg": "^7.12.1",
-    "sequelize": "^5.15.0"
+    "pg": "^7.18.2",
+    "pgtools": "^0.3.0",
+    "sequelize": "^5.22.0"
   }
 }

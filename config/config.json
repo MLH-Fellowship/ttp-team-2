@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "iosmcvwz",
+    "password": "3cghTYtqq70HjOhDn_aWG8Kyo5Qkn3FW",
+    "database": "iosmcvwz",
+    "host": "ruby.db.elephantsql.com",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "iosmcvwz",
+    "password": "3cghTYtqq70HjOhDn_aWG8Kyo5Qkn3FW",
+    "database": "iosmcvwz",
+    "host": "ruby.db.elephantsql.com",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "iosmcvwz",
+    "password": "3cghTYtqq70HjOhDn_aWG8Kyo5Qkn3FW",
+    "database": "iosmcvwz",
+    "host": "ruby.db.elephantsql.com",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  }
+}

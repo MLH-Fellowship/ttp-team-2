@@ -8,6 +8,11 @@ const User = db.define("user", {
     unique: true,
     allowNull: false
   },
+  zipcode: {
+    type: Sequelize.STRING,
+    unique: false,
+    allowNull:false
+  },
   password: {
     type: Sequelize.STRING,
     get() {
@@ -20,9 +25,6 @@ const User = db.define("user", {
       return () => this.getDataValue("salt");
     }
   },
-  googleId: {
-    type: Sequelize.STRING
-  }
 });
 
 User.generateSalt = function() {

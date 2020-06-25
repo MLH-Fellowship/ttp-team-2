@@ -1,8 +1,13 @@
 const Sequelize = require("sequelize");
-const databaseName = "authorize-backend";
+const databaseName = "hackathon-corona";
 
 console.log("Opening database connection");
 
-const db = new Sequelize(`postgres://localhost:5432/${databaseName}`, { logging: false });
+// This is our entry point, we instantiate the Sequelize instance accordingly;
+const db = new Sequelize(
+    process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`,
+    { logging: false }
+  );
 
+// Export our instance of Sequelize, which will be modified with models;
 module.exports = db;
