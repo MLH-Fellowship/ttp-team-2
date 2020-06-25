@@ -13,19 +13,20 @@ const getMarkers = (markers) => {
 
 // THUNK
 // gets the list of object zipcodes from /allZip
-export const getMarkersThunk = (ownProps) => async (dispatch) => { // should I include  ownProps as one of the props and then pushing history?
+export const getMarkersThunk = () => async (dispatch) => { // should I include  ownProps as one of the props and then pushing history?
     let markers;
+    await axios
+        .get("/allZip")
+        .then((res) => res.data)
+        .then((arr) => {
+            markers = arr;
+        })
+        .catch((error) => console.log(error));
+        
     try {
-        axios.get("/allZip")
-            .then((data) => {
-                console.log(data)
-                dispatch(getMarkers(data))
-                ownProps.history.push("/")
-            })
-
+        dispatch(getMarkers(markers));
     } catch (error) {
-        console.log(error)
-        return dispatch(getMarkers(error))
+        console.log(error);
     }
 };
 
