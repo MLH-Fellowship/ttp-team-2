@@ -11,7 +11,7 @@ class SignUpContainer extends Component {
             password: "",
             confirmPassword: "",
             isValidPassword: false,
-            address: "",
+            zip: 0,
             age: 0,
             symptoms: "",
             tested: false,
@@ -54,7 +54,7 @@ class SignUpContainer extends Component {
         event.preventDefault();
         // Change to password validation function above later
         if (this.state.password === this.state.confirmPassword) {
-            this.props.signUp(this.state.username, this.state.password, this.state.address, this.state.age, this.state.symptoms, this.state.tested);
+            this.props.signUp(this.state.username, this.state.password, this.state.zip, this.state.age, this.state.symptoms, this.state.tested);
         }
     };
 
@@ -77,7 +77,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
     return {
-        signUp: (email, password, address, age, symptoms, tested) => dispatch(signUpThunk(email, password, address, age, symptoms, tested, ownProps))
+        signUp: (email, password, zip, age, symptoms, tested) => dispatch(signUpThunk(email, password, zip, age, symptoms, tested, ownProps))
     }
 }
 
