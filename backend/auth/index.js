@@ -4,7 +4,7 @@ const { User } = require("../database/models");
 
 router.post("/login", async (req, res, next) => {
   try {
-    const user = await User.findOne({ where: { email: req.body.email } });
+    const user = await User.findOne({ where: { username: req.body.username } });
     if (!user) {
       res.status(401).send("Wrong username and/or password");
     }
