@@ -6,17 +6,23 @@ const NavbarView = (props) => {
   if (props.isLoggedIn) {
     navbarLinks = (
       <li className="nav-item">
-        <Link to="/profile" className="nav-link">Profile</Link>
+        <Link to="/profile" className="nav-link">
+          Profile
+        </Link>
       </li>
     );
   } else {
     navbarLinks = (
       <>
         <li className="nav-item">
-          <Link to="/login" className="nav-link">Login</Link>
+          <Link to="/login" className="nav-link">
+            Login
+          </Link>
         </li>
         <li className="nav-item">
-          <Link to="/signup" className="nav-link">Signup</Link>
+          <Link to="/signup" className="nav-link">
+            Signup
+          </Link>
         </li>
       </>
     );
@@ -40,9 +46,7 @@ const NavbarView = (props) => {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul className="navbar-nav mr-auto">
-            {navbarLinks}
-          </ul>
+          <ul className="navbar-nav mr-auto">{navbarLinks}</ul>
         </div>
       </nav>
     </div>

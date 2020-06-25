@@ -1,20 +1,15 @@
 import React, { Component } from "react";
-import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
+import { GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
 
-const mapStyles = {
-  width: "100%",
-  height: "100%",
-};
+import CurrentLocation from "./Map";
 
 export class MapContainer extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showingInfoWindow: false,
-      activeMarker: {},
-      selectedPlace: {},
-    };
-  }
+  state = {
+    showingInfoWindow: false,
+    activeMarker: {},
+    selectedPlace: {},
+  };
+
   onMarkerClick = (props, marker, e) =>
     this.setState({
       selectedPlace: props,
@@ -30,22 +25,11 @@ export class MapContainer extends Component {
       });
     }
   };
+
   render() {
     return (
-      <div>
-        <Map
-          google={this.props.google}
-          zoom={14}
-          style={mapStyles}
-          initialCenter={{
-            lat: -1.2884,
-            lng: 36.8233,
-          }}
-        />
-        <Marker
-          onClick={this.onMarkerClick}
-          name={"Kenyatta International Convention Centre"}
-        />
+      <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
+        <Marker onClick={this.onMarkerClick} name={"current location"} />
         <InfoWindow
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow}
@@ -55,7 +39,7 @@ export class MapContainer extends Component {
             <h4>{this.state.selectedPlace.name}</h4>
           </div>
         </InfoWindow>
-      </div>
+      </CurrentLocation>
     );
   }
 }
