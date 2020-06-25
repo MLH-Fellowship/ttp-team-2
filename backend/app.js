@@ -55,11 +55,17 @@ const syncDb = async () => {
       }).then(function (users) {
         console.log(users);
       });
-
-
-
     });
 }
+
+// get all the zip codes
+app.get('/allZip', function (req, res) {
+  db.models.zipcode.findAll()
+    .then(function (zips) {
+      res.send(zips)
+    });
+});
+
 
 
 
@@ -77,7 +83,7 @@ const configureApp = () => {
     res.header("Access-Control-Allow-Credentials", true);
     next();
   });
-
+ 
   */
 
   app.use(
