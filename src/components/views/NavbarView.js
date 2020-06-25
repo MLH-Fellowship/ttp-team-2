@@ -1,6 +1,26 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 const NavbarView = (props) => {
+  let navbarLinks;
+  if (props.isLoggedIn) {
+    navbarLinks = (
+      <li className="nav-item">
+        <Link to="/profile" className="nav-link">Profile</Link>
+      </li>
+    );
+  } else {
+    navbarLinks = (
+      <>
+        <li className="nav-item">
+          <Link to="/login" className="nav-link">Login</Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/signup" className="nav-link">Signup</Link>
+        </li>
+      </>
+    );
+  }
   return (
     <div>
       <nav class="navbar navbar-dark bg-primary">
@@ -26,11 +46,7 @@ const NavbarView = (props) => {
                 Home <span class="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                Link
-              </a>
-            </li>
+            {navbarLinks}
           </ul>
         </div>
       </nav>
