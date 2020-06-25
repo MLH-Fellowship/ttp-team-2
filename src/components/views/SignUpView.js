@@ -2,7 +2,7 @@ import React from "react";
 
 const SignUpView = (props) => {
     return (
-        <form className="m-4" onSubmit={props.handleSubmit}>
+        <form className="page1 p-5" onSubmit={props.handleSubmit}>
             <div className="form-row">
                 <div className="form-group col-md-4">
                     <label htmlFor="username">Username</label>
