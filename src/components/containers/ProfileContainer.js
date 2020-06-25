@@ -7,7 +7,7 @@ class ProfileContainer extends Component {
   render() {
     return (
       <div>
-        <ProfileView userInfo={this.props.userInfo} />
+        <ProfileView userInfo={this.props.user} />
       </div>
     );
   }
@@ -16,7 +16,7 @@ class ProfileContainer extends Component {
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.id,
-    userInfo: state.userInfo,
+    user: state.user,
   };
 };
 
