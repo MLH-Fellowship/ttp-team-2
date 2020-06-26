@@ -1,4 +1,5 @@
 import React from "react";
+var classNames = require('classnames');
 
 const SignUpView = (props) => {
   return (
@@ -111,6 +112,37 @@ const SignUpView = (props) => {
           <label className="form-check-label" htmlFor="exampleRadios2">
             No
           </label>
+        </div>
+      </div>
+      <div className="form-group">
+        <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
+          If so, what were the test results?
+        </label>
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="radio"
+            name="isPositive"
+            id="exampleRadios1"
+            value="true"
+            onClick={props.handleRadio}
+          />
+          <label className="form-check-label" htmlFor="exampleRadios1">
+            Positive
+      </label>
+        </div>
+        <div className="form-check">
+          <input
+            className="form-check-input"
+            type="radio"
+            name="isPositive"
+            id="exampleRadios2"
+            value="false"
+            onClick={props.handleRadio}
+          />
+          <label className="form-check-label" htmlFor="exampleRadios2">
+            Negative
+      </label>
         </div>
       </div>
       <button type="submit" className="btn btn-primary">

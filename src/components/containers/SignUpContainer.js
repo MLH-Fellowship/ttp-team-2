@@ -15,6 +15,8 @@ class SignUpContainer extends Component {
             age: 0,
             symptoms: "",
             tested: false,
+            isPositive: false,
+            showTestResult: false,
             errors: {},
         };
     }
@@ -24,6 +26,7 @@ class SignUpContainer extends Component {
     };
 
     handleRadio = (event) => {
+        this.setState({ showTestResult: true });
         this.setState({ tested: Boolean(event.target.value) });
     }
 
@@ -65,6 +68,9 @@ class SignUpContainer extends Component {
             handleRadio={this.handleRadio}
             errors={this.state.errors}
             isValidPassword={this.state.isValidPassword}
+            handleTestResult={this.handleTestResult}
+            isPositive={this.state.isPositive}
+            showTestResult={this.showTestResult}
         />;
     }
 }
