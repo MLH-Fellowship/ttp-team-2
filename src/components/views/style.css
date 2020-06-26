@@ -15,6 +15,15 @@
   padding: 10px;
 }
 
+.navbar-main-container-toggled{
+  height: 10em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
+  padding: 150px;
+}
+
 .navbar {
   border: solid rgb(0, 183, 255) 2px;
 }

@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./style.css"
 
 const NavbarView = (props) => {
+  // declares a state variable called buttonToggled with initial state false
+  // setToggled will be used to update this variable
+  const [buttonToggled, setToggled] = useState(false);
+
   let testPath = useLocation().pathname;
   let currentPath;
 
@@ -28,6 +32,8 @@ const NavbarView = (props) => {
   // navbarLinks will allow us to change the display based on if user
   // is logged in or not
   let navbarLinks;
+
+  // console.log("toggled: ", buttonToggled);
 
   if (props.isLoggedIn) {
     navbarLinks = (
@@ -70,12 +76,10 @@ const NavbarView = (props) => {
       </>
     );
   }
+
   return (
-    <div className="navbar-main-container">
+    <div className={buttonToggled ? "navbar-main-container-toggled" : "navbar-main-container"}>
       <nav className="navbar navbar-dark bg-primary">
-        {/* <Link to={currentPath} className="navbar-brand">
-          {navbar_title}
-        </Link> */}
         <div className="navbar-title-current-path">
           <h2>{navbar_title}</h2>
         </div>
@@ -87,6 +91,8 @@ const NavbarView = (props) => {
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          // when button is clicked, set state to opposite of what it is now
+          onClick={() => setToggled(!buttonToggled)}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
