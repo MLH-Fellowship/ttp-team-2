@@ -41,6 +41,11 @@ const NavbarView = (props) => {
             Profile
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to="/login" className="nav-link" onClick={props.handleLogout}>
+            Logout
+          </Link>
+        </li>
       </>
     );
   } else {
