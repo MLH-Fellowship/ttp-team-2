@@ -4,3 +4,45 @@
     height: 100% !important;
   }
 }
+
+/* Start of NavbarView */
+.navbar-main-container{
+  height: 10em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
+  background: url("../../images/corona_navbar.jpg") center/cover no-repeat;
+  padding: 10px;
+}
+
+.navbar-main-container-toggled{
+  height: 10em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
+  background: url("../../images/corona_navbar.jpg") center/cover no-repeat;
+  padding: 150px;
+}
+
+.navbar {
+  /* border: solid rgb(0, 183, 255) 2px; */
+  border: solid black 2px;
+}
+
+.navbar-title-current-path {
+  background-color: rgb(0, 183, 255);
+  border: solid black 2px;
+  padding: 4px;
+  margin: 0;
+}
+
+.navbar-toggler {
+  margin-left: 25px;
+}
+
+.navbar-toggler:hover {
+  margin-left: 25px;
+  background-color: rgb(25, 151, 200);
+}

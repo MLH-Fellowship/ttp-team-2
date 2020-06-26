@@ -43,7 +43,7 @@ export const signUpThunk = (username, password, zip, age, symptoms, tested, isPo
 
     try {
         dispatch(signUp(results.data));
-        ownProps.history.push("/");
+        ownProps.history.push("/login");
     } catch (error) {
         console.log(error);
     }
