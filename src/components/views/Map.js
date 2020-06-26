@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { connect } from "react-redux";
+import { getMarkersThunk } from "../../thunks";
 
 const mapStyles = {
   map: {
@@ -43,6 +45,7 @@ export class CurrentLocation extends React.Component {
     }
   }
   componentDidMount() {
+    this.props.loadMarkers();
     if (this.props.centerAroundCurrentLocation) {
       if (navigator && navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((pos) => {
@@ -99,6 +102,9 @@ export class CurrentLocation extends React.Component {
     });
   }
   render() {
+    /* ALL ZIP CODES ARE AVAILABLE THROUGH this.props.markers */
+    console.log(this.props.markers);
+    console.log(this.props.markers[0]);
     const style = Object.assign({}, mapStyles.map);
     return (
       <div>
@@ -110,7 +116,20 @@ export class CurrentLocation extends React.Component {
     );
   }
 }
-export default CurrentLocation;
+
+const mapState = (state) => {
+  return {
+    markers: state.map,
+  }
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    loadMarkers: () => dispatch(getMarkersThunk()),
+  };
+};
+
+export default connect(mapState, mapDispatch)(CurrentLocation);
 
 CurrentLocation.defaultProps = {
   zoom: 14,
