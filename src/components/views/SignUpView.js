@@ -1,47 +1,6 @@
 import React from "react";
 
 const SignUpView = (props) => {
-  const show = props.showTestResult
-  let question;
-  if (show) {
-    question = (
-      <>
-        <div className="form-group">
-          <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
-            If so, what were the test results?
-          </label>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="isPositive"
-              id="exampleRadios1"
-              value="true"
-              onClick={props.handleResults}
-            />
-
-            <label className="form-check-label" htmlFor="exampleRadios1">
-              Positive
-            </label>
-          </div>
-          <div className="form-check">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="isPositive"
-              id="exampleRadios2"
-              value="false"
-              onClick={props.handleResults}
-            />
-            <label className="form-check-label" htmlFor="exampleRadios2">
-              Negative
-            </label>
-          </div>
-        </div>
-      </>);
-  } else {
-    question = (<></>);
-  }
 
   return (
     <form className="page1 p-5" onSubmit={props.handleSubmit}>
@@ -126,36 +85,23 @@ const SignUpView = (props) => {
       </div>
       <div className="form-group">
         <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
-          Have you been tested?
+          Have you tested positive?
         </label>
         <div className="form-check">
           <input
             className="form-check-input"
             type="radio"
-            name="tested"
+            name="isPositive"
             id="exampleRadios1"
             value="true"
-            onClick={props.handleTested}
+            onClick={props.handleResults}
           />
           <label className="form-check-label" htmlFor="exampleRadios1">
             Yes
           </label>
         </div>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="radio"
-            name="tested"
-            id="exampleRadios2"
-            value="false"
-            onClick={props.handleTested}
-          />
-          <label className="form-check-label" htmlFor="exampleRadios2">
-            No
-          </label>
-        </div>
+
       </div>
-      {question}
       <button type="submit" className="btn btn-primary">
         Sign in
       </button>

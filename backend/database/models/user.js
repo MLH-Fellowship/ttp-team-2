@@ -26,9 +26,6 @@ const User = db.define("user", {
   symptoms: {
     type: Sequelize.STRING,
   },
-  tested: {
-    type: Sequelize.BOOLEAN,
-  },
   isPositive: {
     type: Sequelize.BOOLEAN,
   },

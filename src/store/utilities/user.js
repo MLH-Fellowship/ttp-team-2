@@ -27,15 +27,15 @@ const logout = () => {
 };
 
 // THUNKS
-export const signUpThunk = (username, password, zip, age, symptoms, tested, isPositive, ownProps) => async (dispatch) => {
+export const signUpThunk = (username, password, zip, age, symptoms, isPositive, ownProps) => async (dispatch) => {
     //Once server route for sign up is implemented, change the axios post route to appropriate server endpoint
-    console.log(username, password, zip, age, symptoms, tested, isPositive);
+    console.log(username, password, zip, age, symptoms, isPositive);
     console.log("is positive", typeof (isPositive))
     let results;
     try {
         results = axios.post(
             `/auth/signup`,
-            { username, password, zip, age, symptoms, tested, isPositive },
+            { username, password, zip, age, symptoms, isPositive },
             { withCredentials: true }
         );
     } catch (error) {

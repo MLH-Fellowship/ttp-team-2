@@ -14,30 +14,24 @@ class SignUpContainer extends Component {
             zip: 0,
             age: 0,
             symptoms: "",
-            tested: false,
             isPositive: false,
             showTestResult: false,
             errors: {},
         };
-    }
+        this.handleResults = this.handleResults.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    };
+
 
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value }/*, this.validatePassword*/);
     };
 
     handleResults = (event) => {
-        console.log("tested", this.state.tested)
-
         console.log("This is the result radio", event.target.value)
         this.setState({ isPositive: Boolean(event.target.value) })
     }
-    handleTested = (event) => {
-        this.setState({ showTestResult: Boolean(event.target.value) });
-        console.log("This is the tested radio", event.target.value)
-        this.setState({
-            tested: Boolean(event.target.value)
-        });
-    }
+
 
     validatePassword = () => {
         const { password } = this.state;
@@ -68,7 +62,7 @@ class SignUpContainer extends Component {
 
         // Change to password validation function above later
         if (this.state.password === this.state.confirmPassword) {
-            this.props.signUp(this.state.username, this.state.password, this.state.zip, this.state.age, this.state.symptoms, this.state.tested, this.state.isPositive);
+            this.props.signUp(this.state.username, this.state.password, this.state.zip, this.state.age, this.state.symptoms, this.state.isPositive);
         }
     };
 
@@ -79,7 +73,6 @@ class SignUpContainer extends Component {
             handleRadio={this.handleRadio}
             errors={this.state.errors}
             isValidPassword={this.state.isValidPassword}
-            handleTested={this.handleTested}
             handleResults={this.handleResults}
             showTestResult={this.state.showTestResult}
 
@@ -95,7 +88,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
     return {
-        signUp: (username, password, zip, age, symptoms, tested, isPositive) => dispatch(signUpThunk(username, password, zip, age, symptoms, tested, isPositive, ownProps))
+        signUp: (username, password, zip, age, symptoms, isPositive) => dispatch(signUpThunk(username, password, zip, age, symptoms, isPositive, ownProps))
     }
 }
 
