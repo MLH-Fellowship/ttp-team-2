@@ -7,7 +7,7 @@ class ProfileContainer extends Component {
   render() {
     return (
       <div>
-        <ProfileView userInfo={this.props.user} />
+        <ProfileView userInfo={this.props.user} isLoggedIn={this.props.isLoggedIn}/>
       </div>
     );
   }
