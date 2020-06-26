@@ -1,49 +1,47 @@
-import React, { Component } from "react";
-import { GoogleApiWrapper, InfoWindow, Marker } from "google-maps-react";
+import React, { useState, useRef } from "react";
+import useSwr from "swr";
+import GoogleMapReact from "google-map-react";
+import useSupercluster from "use-supercluster";
+import "../../app/App.css";
 
-import CurrentLocation from "./Map";
+const fetcher = (...args) => fetch(...args).then((response) => response.json());
 
-export class MapContainer extends Component {
-  state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedPlace: {},
-  };
+// const Marker = ({ children }) => children;
+const Marker = (props) => {
+  return (
+    <>
+      <div className="pin"></div>
+      <div className="pulse"></div>
+    </>
+  );
+};
 
-  onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true,
-    });
+const HomeView = (props) => {
+  console.log("hello" + props.markers);
+  const mapRef = useRef();
+  return (
+    <div style={{ height: "100vh", width: "100%" }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: "AIzaSyA8Jdg0GRV9vewO5aqcNULkYcZdjy5PD7E" }}
+        defaultCenter={{ lat: 40.7, lng: 74 }}
+        defaultZoom={10}
+        yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map }) => {
+          mapRef.current = map;
+        }}
+      >
+        {props.markers.map((marker) => (
+          <Marker
+            key={Math.floor(Math.random() * 99999999)}
+            lat={marker.lat}
+            lng={marker.long}
+            // lat={latitude}
+            // lng={longitude}
+          />
+        ))}
+      </GoogleMapReact>
+    </div>
+  );
+};
 
-  onClose = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null,
-      });
-    }
-  };
-
-  render() {
-    return (
-      <CurrentLocation centerAroundCurrentLocation google={this.props.google}>
-        <Marker onClick={this.onMarkerClick} name={"current location"} />
-        <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
-          onClose={this.onClose}
-        >
-          <div>
-            <h4>{this.state.selectedPlace.name}</h4>
-          </div>
-        </InfoWindow>
-      </CurrentLocation>
-    );
-  }
-}
-
-export default GoogleApiWrapper({
-  apiKey: "AIzaSyA8Jdg0GRV9vewO5aqcNULkYcZdjy5PD7E",
-})(MapContainer);
+export default HomeView;

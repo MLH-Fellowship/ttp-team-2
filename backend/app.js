@@ -35,9 +35,9 @@ const syncDb = async () => {
 
     zipcode
       .bulkCreate([
-        { zipCode: "10001", user: "user01" },
-        { zipCode: "10022", user: "user02" },
-        { zipCode: "32003", user: "user03" },
+        { zipCode: "10001", user: "user01", lat: 40.7537, long: 73.9992 },
+        { zipCode: "10022", user: "user02", lat: 40.7594, long: 73.9698 },
+        { zipCode: "32003", user: "user03", lat: 30.105, long: 81.7131 },
       ])
       .then(function () {
         return zipcode.findAll();

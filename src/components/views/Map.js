@@ -110,7 +110,7 @@ export class CurrentLocation extends React.Component {
     console.log(this.props.markers[0]);
     const style = Object.assign({}, mapStyles.map);
     return (
-      <div className="d-flex justify-content-center p-2 bd-highlight align-middle">
+      <div className="d-flex justify-content-center p-2 bd-highlight">
         <div style={style} ref="map">
           Loading map...
         </div>
