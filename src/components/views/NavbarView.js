@@ -10,7 +10,7 @@ const NavbarView = (props) => {
   // We need to check the length of the string retrieved through useLocation.pathname
   // When we are on home route, the length of the string is just 1
   // When we are on any other route, the length will be greater than 1
-  if (testPath.length!=1){
+  if (testPath.length != 1) {
     currentPath = testPath;
   } else {
     currentPath = "/home";
