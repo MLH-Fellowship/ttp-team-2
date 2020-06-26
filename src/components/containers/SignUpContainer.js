@@ -57,7 +57,7 @@ class SignUpContainer extends Component {
         event.preventDefault();
         // Change to password validation function above later
         if (this.state.password === this.state.confirmPassword) {
-            this.props.signUp(this.state.username, this.state.password, this.state.zip, this.state.age, this.state.symptoms, this.state.tested);
+            this.props.signUp(this.state.username, this.state.password, this.state.zip, this.state.age, this.state.symptoms, this.state.tested, this.state.isPositive);
         }
     };
 
@@ -83,7 +83,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
     return {
-        signUp: (email, password, zip, age, symptoms, tested) => dispatch(signUpThunk(email, password, zip, age, symptoms, tested, ownProps))
+        signUp: (username, password, zip, age, symptoms, tested, isPositive) => dispatch(signUpThunk(username, password, zip, age, symptoms, tested, isPositive, ownProps))
     }
 }
 
