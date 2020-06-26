@@ -20,7 +20,20 @@ const User = db.define("user", {
       return () => this.getDataValue("salt");
     },
   },
+  age: {
+    type: Sequelize.INTEGER,
+  },
+  tested: {
+    type: Sequelize.BOOLEAN,
+  },
+  isPositive: {
+    type: Sequelize.STRING
+  },
+  symptoms: {
+    type: Sequelize.STRING
+  }
 });
+
 
 User.generateSalt = function () {
   return crypto.randomBytes(16).toString("base64");
