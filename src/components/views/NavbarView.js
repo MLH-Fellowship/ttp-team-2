@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import "./style.css"
 
 const NavbarView = (props) => {
   let testPath = useLocation().pathname;
@@ -70,12 +71,14 @@ const NavbarView = (props) => {
     );
   }
   return (
-    <div>
+    <div className="navbar-main-container">
       <nav className="navbar navbar-dark bg-primary">
         {/* <Link to={currentPath} className="navbar-brand">
           {navbar_title}
         </Link> */}
-        {navbar_title}
+        <div className="navbar-title-current-path">
+          <h2>{navbar_title}</h2>
+        </div>
         <button
           className="navbar-toggler"
           type="button"
