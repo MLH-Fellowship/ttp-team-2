@@ -19,15 +19,15 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/signup", async (req, res, next) => {
   try {
-    const { username, password, zip } = req.body;
-    console.log(username, password, zip);
+    const { username, password, zip, age, symptoms, tested, isPositive } = req.body;
+    console.log(username, password, zip, age, symptoms, tested, isPositive);
     const zipC = await Zipcode.findOne({ where: { zipCode: zip } });
     // const zipC = await Zipcode.create(
     //   { zipCode: zip, user: username },
     //   { include: User }
     // );
     // const user = await User.create({ username, password }, { include: Zipcode });
-    const user = await zipC.createUser({ username, password });
+    const user = await zipC.createUser({ username, password, age, symptoms, tested, isPositive });
 
     console.log(user);
     req.login(user, (err) => (err ? next(err) : res.json(user)));

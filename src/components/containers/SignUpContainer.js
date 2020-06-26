@@ -25,9 +25,18 @@ class SignUpContainer extends Component {
         this.setState({ [event.target.name]: event.target.value }/*, this.validatePassword*/);
     };
 
-    handleRadio = (event) => {
-        this.setState({ showTestResult: true });
-        this.setState({ tested: Boolean(event.target.value) });
+    handleResults = (event) => {
+        console.log("tested", this.state.tested)
+
+        console.log("This is the result radio", event.target.value)
+        this.setState({ isPositive: Boolean(event.target.value) })
+    }
+    handleTested = (event) => {
+        this.setState({ showTestResult: Boolean(event.target.value) });
+        console.log("This is the tested radio", event.target.value)
+        this.setState({
+            tested: Boolean(event.target.value)
+        });
     }
 
     validatePassword = () => {
@@ -55,9 +64,11 @@ class SignUpContainer extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
+        console.log("handle submit", this.state.isPositive)
+
         // Change to password validation function above later
         if (this.state.password === this.state.confirmPassword) {
-            this.props.signUp(this.state.username, this.state.password, this.state.zip, this.state.age, this.state.symptoms, this.state.tested);
+            this.props.signUp(this.state.username, this.state.password, this.state.zip, this.state.age, this.state.symptoms, this.state.tested, this.state.isPositive);
         }
     };
 
@@ -68,9 +79,10 @@ class SignUpContainer extends Component {
             handleRadio={this.handleRadio}
             errors={this.state.errors}
             isValidPassword={this.state.isValidPassword}
-            handleTestResult={this.handleTestResult}
-            isPositive={this.state.isPositive}
-            showTestResult={this.showTestResult}
+            handleTested={this.handleTested}
+            handleResults={this.handleResults}
+            showTestResult={this.state.showTestResult}
+
         />;
     }
 }
@@ -83,7 +95,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch, ownProps) => {
     return {
-        signUp: (email, password, zip, age, symptoms, tested) => dispatch(signUpThunk(email, password, zip, age, symptoms, tested, ownProps))
+        signUp: (username, password, zip, age, symptoms, tested, isPositive) => dispatch(signUpThunk(username, password, zip, age, symptoms, tested, isPositive, ownProps))
     }
 }
 

@@ -30,6 +30,7 @@ const logout = () => {
 export const signUpThunk = (username, password, zip, age, symptoms, tested, isPositive, ownProps) => async (dispatch) => {
     //Once server route for sign up is implemented, change the axios post route to appropriate server endpoint
     console.log(username, password, zip, age, symptoms, tested, isPositive);
+    console.log("is positive", typeof (isPositive))
     let results;
     try {
         results = axios.post(

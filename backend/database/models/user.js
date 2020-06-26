@@ -23,15 +23,16 @@ const User = db.define("user", {
   age: {
     type: Sequelize.INTEGER,
   },
+  symptoms: {
+    type: Sequelize.STRING,
+  },
   tested: {
     type: Sequelize.BOOLEAN,
   },
   isPositive: {
-    type: Sequelize.STRING
+    type: Sequelize.BOOLEAN,
   },
-  symptoms: {
-    type: Sequelize.STRING
-  }
+
 });
 
 

@@ -1,7 +1,48 @@
 import React from "react";
-var classNames = require('classnames');
 
 const SignUpView = (props) => {
+  const show = props.showTestResult
+  let question;
+  if (show) {
+    question = (
+      <>
+        <div className="form-group">
+          <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
+            If so, what were the test results?
+          </label>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="isPositive"
+              id="exampleRadios1"
+              value="true"
+              onClick={props.handleResults}
+            />
+
+            <label className="form-check-label" htmlFor="exampleRadios1">
+              Positive
+            </label>
+          </div>
+          <div className="form-check">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="isPositive"
+              id="exampleRadios2"
+              value="false"
+              onClick={props.handleResults}
+            />
+            <label className="form-check-label" htmlFor="exampleRadios2">
+              Negative
+            </label>
+          </div>
+        </div>
+      </>);
+  } else {
+    question = (<></>);
+  }
+
   return (
     <form className="page1 p-5" onSubmit={props.handleSubmit}>
       <div className="form-row">
@@ -94,7 +135,7 @@ const SignUpView = (props) => {
             name="tested"
             id="exampleRadios1"
             value="true"
-            onClick={props.handleRadio}
+            onClick={props.handleTested}
           />
           <label className="form-check-label" htmlFor="exampleRadios1">
             Yes
@@ -107,44 +148,14 @@ const SignUpView = (props) => {
             name="tested"
             id="exampleRadios2"
             value="false"
-            onClick={props.handleRadio}
+            onClick={props.handleTested}
           />
           <label className="form-check-label" htmlFor="exampleRadios2">
             No
           </label>
         </div>
       </div>
-      <div className="form-group">
-        <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">
-          If so, what were the test results?
-        </label>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="radio"
-            name="isPositive"
-            id="exampleRadios1"
-            value="true"
-            onClick={props.handleRadio}
-          />
-          <label className="form-check-label" htmlFor="exampleRadios1">
-            Positive
-      </label>
-        </div>
-        <div className="form-check">
-          <input
-            className="form-check-input"
-            type="radio"
-            name="isPositive"
-            id="exampleRadios2"
-            value="false"
-            onClick={props.handleRadio}
-          />
-          <label className="form-check-label" htmlFor="exampleRadios2">
-            Negative
-      </label>
-        </div>
-      </div>
+      {question}
       <button type="submit" className="btn btn-primary">
         Sign in
       </button>
