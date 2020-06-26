@@ -1,5 +1,4 @@
 import React from "react";
-var classNames = require('classnames');
 
 const SignUpView = (props) => {
   return (
@@ -129,7 +128,7 @@ const SignUpView = (props) => {
           />
           <label className="form-check-label" htmlFor="exampleRadios1">
             Positive
-      </label>
+          </label>
         </div>
         <div className="form-check">
           <input
@@ -142,7 +141,7 @@ const SignUpView = (props) => {
           />
           <label className="form-check-label" htmlFor="exampleRadios2">
             Negative
-      </label>
+          </label>
         </div>
       </div>
       <button type="submit" className="btn btn-primary">

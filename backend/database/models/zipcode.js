@@ -11,6 +11,12 @@ const Zipcode = db.define("zipcode", {
     type: Sequelize.STRING,
     unique: true,
   },
+  lat: {
+    type: Sequelize.DECIMAL,
+  },
+  long: {
+    type: Sequelize.DECIMAL,
+  },
 });
 
 module.exports = Zipcode;

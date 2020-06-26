@@ -9,6 +9,9 @@ const mapStyles = {
     width: "50%",
     height: "50%",
     margin: "0 auto",
+    border: "10px solid black",
+    borderRadius: "10px",
+    display: "flex",
   },
 };
 
@@ -107,7 +110,7 @@ export class CurrentLocation extends React.Component {
     console.log(this.props.markers[0]);
     const style = Object.assign({}, mapStyles.map);
     return (
-      <div>
+      <div className="d-flex justify-content-center p-2 bd-highlight">
         <div style={style} ref="map">
           Loading map...
         </div>
@@ -120,8 +123,8 @@ export class CurrentLocation extends React.Component {
 const mapState = (state) => {
   return {
     markers: state.map,
-  }
-}
+  };
+};
 
 const mapDispatch = (dispatch) => {
   return {
